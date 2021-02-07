@@ -7,7 +7,7 @@ Implements a Twine project (exported as a JSON file) in a home-grown engine writ
 Python 3.9.1 and Twine 2 (twison 0.0.1 format)
 
 ## References
-Story conpect was inspired by the Shin Megami Tensei series.
+Story concept was inspired by the Shin Megami Tensei series.
 
 ## Future Development
 Two specific item variables for different endings and a damage system.
