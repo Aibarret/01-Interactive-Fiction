@@ -27,7 +27,10 @@ def format_passage(description):
     description = re.sub(r'\[\[(.+?)\]\]',r'[ \1 ]',description)
     return description
 
-
+def update_damage(current,damage):
+    if "damage" in current:
+        damage += int(current["damage"])
+    return damage
 
 def update(current,choice,game_desc):
     if choice == "":
@@ -40,10 +43,15 @@ def update(current,choice,game_desc):
     return current
     
 
-def render(current):
+def render(current,damage):
     print("\n\n")
-    print(current["name"])
-    print(format_passage(current["text"]))
+    print("Damage: {damage}".format(damage=damage))
+    print("\n\n")
+    if damage < 4:
+        print(current["name"])
+        print(format_passage(current["text"]))
+    if damage > 3:
+        print("GAME OVER")
     print("\n\n")
 
 def get_input():
@@ -58,12 +66,15 @@ def main():
     current = find_passage(game_desc, game_desc["startnode"])
     choice = ""
 
-    while choice != "quit" and current != {}:
-        current = update(current,choice,game_desc)
-        render(current)
-        choice = get_input()
+    damage = 0
 
-    print("Thanks for playing!")
+
+    while choice != "quit" and current != {} or damage > 3:
+        current = update(current,choice,game_desc)
+        damage = update_damage(current,damage)
+        render(current,damage)
+        choice = get_input()
+    print("GAME OVER")
 
 
 if __name__ == "__main__":

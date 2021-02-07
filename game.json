@@ -105,6 +105,7 @@
         ],
         "name": "Rocks",
         "pid": "5",
+        "damage": 1,
         "position": {
           "x": "300",
           "y": "750"
